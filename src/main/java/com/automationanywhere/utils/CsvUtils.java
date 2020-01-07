@@ -13,12 +13,12 @@ package com.automationanywhere.utils;
 
 
 import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Bren Sapience
@@ -42,4 +42,50 @@ public class CsvUtils {
          return(null);
       }
    }
+
+   public static int GetHeaderIndexFromArray(List<String[]> data, String ColumnName){
+       String[] headers = data.get(0);
+        boolean ColumnFound = false;
+
+       for(int i=0;i<headers.length;i++){
+           if(headers[i].toLowerCase().equals(ColumnName.toLowerCase())){
+               ColumnFound = true;
+               return i;
+           }
+       }
+
+       return -1;
+   }
+
+    public static List<String[]> GetCsvFileAsList(String CsvFilePath) {
+        List<String[]> DataList = new ArrayList<String[]>();
+        try{
+            CSVReader reader = ImportCsvFile(CsvFilePath);
+            DataList = reader.readAll();
+        }catch(IOException e){
+            return DataList;
+        }
+        return  DataList;
+    }
+
+    public static boolean WriteArrayToCsvFile(String CsvFilePath,List<String[]> DataArray){
+       try{
+           FileWriter outputfile = new FileWriter(CsvFilePath);
+
+           // create CSVWriter with '|' as separator
+           CSVWriter writer = new CSVWriter(outputfile, ',',
+                   '"',
+                   CSVWriter.DEFAULT_ESCAPE_CHARACTER,
+                   CSVWriter.DEFAULT_LINE_END);
+
+           writer.writeAll(DataArray);
+
+           // closing writer connection
+           writer.close();
+
+       }catch(IOException e){
+           return false;
+       }
+        return true;
+    }
 }
