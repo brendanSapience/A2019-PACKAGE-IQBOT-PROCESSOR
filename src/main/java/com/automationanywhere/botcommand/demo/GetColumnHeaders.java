@@ -36,7 +36,7 @@ import static com.automationanywhere.commandsdk.model.DataType.STRING;
  *
  */
 @BotCommand
-@CommandPkg(label="Get Column Headers from CSV", name="Get Column Headers from CSV", description="Get Column Headers from CSV", icon="pkg.svg",
+@CommandPkg(label="Get Column Headers", name="Get Column Headers", description="Get Column Headers as a list", icon="pkg.svg",
 		node_label="Get Column Headers from CSV",
 		return_type= DataType.LIST, return_label="Assign the output to variable", return_required=true)
 

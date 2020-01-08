@@ -12,7 +12,6 @@
 package com.automationanywhere.botcommand.demo;
 
 import com.automationanywhere.botcommand.data.impl.BooleanValue;
-import com.automationanywhere.botcommand.data.impl.StringValue;
 import com.automationanywhere.botcommand.exception.BotCommandException;
 import com.automationanywhere.commandsdk.annotations.*;
 import com.automationanywhere.commandsdk.annotations.rules.NotEmpty;
@@ -21,13 +20,8 @@ import com.automationanywhere.commandsdk.i18n.MessagesFactory;
 import com.automationanywhere.commandsdk.model.AttributeType;
 import com.automationanywhere.commandsdk.model.DataType;
 import com.automationanywhere.utils.CsvUtils;
-import com.opencsv.CSVReader;
-import com.opencsv.CSVWriter;
 
-import java.io.StringWriter;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.io.IOException;
 
 import static com.automationanywhere.commandsdk.model.DataType.STRING;
 
@@ -36,38 +30,32 @@ import static com.automationanywhere.commandsdk.model.DataType.STRING;
  *
  */
 @BotCommand
-@CommandPkg(label="Set Cell Content", name="Set Cell Content", description="Set Cell Content", icon="pkg.svg",
-		node_label="Set Cell Content",
+@CommandPkg(label="Transform Column with Regex", name="Transform Column with Regex", description="Keep only the first Regex Group Match in all cells of a column", icon="pkg.svg",
+		node_label="Transform Column with Regex",
 		return_type= DataType.BOOLEAN, return_label="Assign the output to variable", return_required=true)
 
-public class SetCellContent {
+public class TransformColumnWithRegex {
 
 	private static final Messages MESSAGES = MessagesFactory.getMessages("com.automationanywhere.botcommand.demo.messages");
 
 	@Execute
 	public BooleanValue action(
 			@Idx(index = "1", type = AttributeType.TEXT) @Pkg(label = "CSV Input File Path", default_value_type = STRING) @NotEmpty String CsvFilePath,
-			@Idx(index = "2", type = AttributeType.NUMBER) @Pkg(label = "Row Number", default_value_type = DataType.NUMBER) @NotEmpty Double RowNumber,
-			@Idx(index = "3", type = AttributeType.TEXT) @Pkg(label = "Column Name", default_value_type = DataType.STRING) @NotEmpty String ColumnName,
-			@Idx(index = "4", type = AttributeType.TEXT) @Pkg(label = "New Content", default_value_type = DataType.STRING) @NotEmpty String NewCellContent
+			@Idx(index = "2", type = AttributeType.REGEX) @Pkg(label = "Regular Expression", default_value_type = STRING) @NotEmpty String Regex,
+			@Idx(index = "3", type = AttributeType.TEXT) @Pkg(label = "Column Name To Transform", default_value_type = STRING) @NotEmpty String ColumnName
 			)
 	{
 		if("".equals(CsvFilePath)) {throw new BotCommandException(MESSAGES.getString("emptyInputString", "CsvFilePath"));}
-		if(RowNumber.equals(null)) {throw new BotCommandException(MESSAGES.getString("emptyInputString", "RowNumber"));}
+		if("".equals(Regex)) {throw new BotCommandException(MESSAGES.getString("emptyInputString", "Regex"));}
 		if("".equals(ColumnName)) {throw new BotCommandException(MESSAGES.getString("emptyInputString", "ColumnName"));}
 
-		List<String[]> DataArray = CsvUtils.GetCsvFileAsList(CsvFilePath);
-		int ColumnIdx = CsvUtils.GetHeaderIndexFromArray(DataArray,ColumnName);
-		int IntRowNumber = (int) Math.round(RowNumber);
+		try{
+			boolean res = CsvUtils.TransformColumnWithRegex(CsvFilePath,ColumnName,Regex);
+			return new BooleanValue(Boolean.toString(res));
+		}catch(IOException e){
+			return  new BooleanValue("false");
+		}
 
-		String[] RowToChange = DataArray.get(IntRowNumber);
-
-		RowToChange[ColumnIdx] = NewCellContent;
-
-		DataArray.set(IntRowNumber,RowToChange);
-
-		boolean res = CsvUtils.WriteArrayToCsvFile(CsvFilePath,DataArray);
-		return new BooleanValue(Boolean.toString(res));
 
 	}
 

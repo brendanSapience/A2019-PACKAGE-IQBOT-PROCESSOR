@@ -1,7 +1,7 @@
 {
   "name": "Extended CSV Tools",
   "label": "Extended CSV Tools",
-  "description": "Provides IQ Bot and CSV Actions.",
+  "description": "Provides Actions for IQ Bot Output Files.",
   "group": "",
   "artifactName": "",
   "packageVersion": "",

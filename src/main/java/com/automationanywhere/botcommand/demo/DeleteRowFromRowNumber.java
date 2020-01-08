@@ -11,10 +11,7 @@
  */
 package com.automationanywhere.botcommand.demo;
 
-import com.automationanywhere.botcommand.data.Value;
-import com.automationanywhere.botcommand.data.impl.ListValue;
-import com.automationanywhere.botcommand.data.impl.StringValue;
-import com.automationanywhere.botcommand.data.impl.NumberValue;
+import com.automationanywhere.botcommand.data.impl.BooleanValue;
 import com.automationanywhere.botcommand.exception.BotCommandException;
 import com.automationanywhere.commandsdk.annotations.*;
 import com.automationanywhere.commandsdk.annotations.rules.NotEmpty;
@@ -23,14 +20,10 @@ import com.automationanywhere.commandsdk.i18n.MessagesFactory;
 import com.automationanywhere.commandsdk.model.AttributeType;
 import com.automationanywhere.commandsdk.model.DataType;
 import com.automationanywhere.utils.CsvUtils;
-import com.opencsv.CSVReader;
 
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 
 import static com.automationanywhere.commandsdk.model.DataType.STRING;
 
@@ -39,35 +32,32 @@ import static com.automationanywhere.commandsdk.model.DataType.STRING;
  *
  */
 @BotCommand
-@CommandPkg(label="Get Number of Rows", name="Get Number of Rows", description="Get Number of Rows in CSV", icon="pkg.svg",
-		node_label="Get Number of Rows",
-		return_type= DataType.NUMBER, return_label="Assign the output to variable", return_required=true)
+@CommandPkg(label="Delete Row", name="Delete Row", description="Delete a Row selected by number", icon="pkg.svg",
+		node_label="Delete Row",
+		return_type= DataType.BOOLEAN, return_label="Assign the output to variable", return_required=true)
 
-public class GetNumberOfRows {
+public class DeleteRowFromRowNumber {
 
 	private static final Messages MESSAGES = MessagesFactory.getMessages("com.automationanywhere.botcommand.demo.messages");
 
 	@Execute
-	public NumberValue action(
-			@Idx(index = "1", type = AttributeType.TEXT) @Pkg(label = "CSV Input File Path", default_value_type = STRING) @NotEmpty String CsvFilePath
-
+	public BooleanValue action(
+			@Idx(index = "1", type = AttributeType.TEXT) @Pkg(label = "CSV Input File Path", default_value_type = STRING) @NotEmpty String CsvFilePath,
+			@Idx(index = "2", type = AttributeType.NUMBER) @Pkg(label = "Row Number", default_value_type = DataType.NUMBER) @NotEmpty Double RowNumber
 			)
 	{
 		if("".equals(CsvFilePath)) {throw new BotCommandException(MESSAGES.getString("emptyInputString", "CsvFilePath"));}
+		if("".equals(RowNumber)) {throw new BotCommandException(MESSAGES.getString("emptyInputString", "RowNumber"));}
 
-		CSVReader reader = CsvUtils.ImportCsvFile(CsvFilePath);
-
-		Iterator<String[]> iter = reader.iterator();
-		int NumberOfRows = 0;
-
-		while(iter.hasNext()){
-			String[] Row = iter.next();
-			NumberOfRows++;
+		int IntRowNumber = (int) Math.round(RowNumber);
+		try{
+			boolean res = CsvUtils.DeleteRow(CsvFilePath,IntRowNumber);
+			return new BooleanValue(Boolean.toString(res));
+		}catch(IOException e){
+			return  new BooleanValue("false");
 		}
 
-		return new NumberValue(Integer.toString(NumberOfRows));
 
 	}
-
 
 }

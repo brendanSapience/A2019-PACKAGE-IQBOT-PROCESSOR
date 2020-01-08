@@ -35,8 +35,8 @@ import static com.automationanywhere.commandsdk.model.DataType.STRING;
  *
  */
 @BotCommand
-@CommandPkg(label="Get Row Content", name="Get Row Content", description="Get Row Content", icon="pkg.svg",
-		node_label="Get Row Content",
+@CommandPkg(label="Get Cell Content", name="Get Cell Content", description="Get Content of a Cell", icon="pkg.svg",
+		node_label="Get Cell Content",
 		return_type= STRING, return_label="Assign the output to variable", return_required=true)
 
 public class GetCellContent {
