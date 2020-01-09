@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.automationanywhere.botcommand.demo.GetColumnHeadersTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-01-08T21:34:36" hostname="EC2AMAZ-5L6MMDA" time="0.004">
+  <properties/>
+  <testcase name="aTests[0](C:\Users\Administrator.EC2AMAZ-5L6MMDA\Desktop\Axos\Hamilton Appraisal Group - 2018 October_1.csv, )" classname="com.automationanywhere.botcommand.demo.GetColumnHeadersTest" time="0.004"/>
+  <system-out><![CDATA[Debug:statement_number
+Debug:federal_tax_id
+Debug:bill_to
+Debug:attn
+Debug:statement_covers
+Debug:statement
+Debug:subtotal
+Debug:Result
+Debug:File Path
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

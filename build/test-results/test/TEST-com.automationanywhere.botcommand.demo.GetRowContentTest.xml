@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.automationanywhere.botcommand.demo.GetRowContentTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-01-08T21:34:36" hostname="EC2AMAZ-5L6MMDA" time="0.006">
+  <properties/>
+  <testcase name="aTests[0](C:\Users\Administrator.EC2AMAZ-5L6MMDA\Desktop\Axos\Hamilton Appraisal Group - 2018 October_1.csv, 3.0, )" classname="com.automationanywhere.botcommand.demo.GetRowContentTest" time="0.006"/>
+  <system-out><![CDATA[Debug:2018 October
+Debug:87-0741785
+Debug:AXOS Bank 4350 La Jolla Village Drive Suite 140 San Diego, CA 92122
+Debug:Accounts Payable
+Debug:10/01/2018 to 10/31/2018
+Debug:10/10/18 desk 520 Moran: 3410112
+Debug:175
+Debug:true
+Debug:
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
