@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.automationanywhere.botcommand.demo.AddColumnTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-01-08T21:34:36" hostname="EC2AMAZ-5L6MMDA" time="0.047">
+<testsuite name="com.automationanywhere.botcommand.demo.AddColumnTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-01-09T21:50:45" hostname="EC2AMAZ-5L6MMDA" time="0.052">
   <properties/>
-  <testcase name="aTests[0](C:\Users\Administrator.EC2AMAZ-5L6MMDA\Desktop\Axos\Hamilton Appraisal Group - 2018 October_1.csv, federal_tax_id, , NEW_COL1, true)" classname="com.automationanywhere.botcommand.demo.AddColumnTest" time="0.034"/>
-  <testcase name="aTests[1](C:\Users\Administrator.EC2AMAZ-5L6MMDA\Desktop\Axos\Hamilton Appraisal Group - 2018 October_1.csv, , bill_to, NEW_COL2, true)" classname="com.automationanywhere.botcommand.demo.AddColumnTest" time="0.011"/>
+  <testcase name="aTests[0](C:\Users\Administrator.EC2AMAZ-5L6MMDA\Desktop\Axos\Hamilton Appraisal Group - 2018 October_1.csv, federal_tax_id, , NEW_COL1, true)" classname="com.automationanywhere.botcommand.demo.AddColumnTest" time="0.035"/>
+  <testcase name="aTests[1](C:\Users\Administrator.EC2AMAZ-5L6MMDA\Desktop\Axos\Hamilton Appraisal Group - 2018 October_1.csv, , bill_to, NEW_COL2, true)" classname="com.automationanywhere.botcommand.demo.AddColumnTest" time="0.016"/>
   <system-out><![CDATA[DEBUG:true
 DEBUG:true
 ]]></system-out>

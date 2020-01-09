@@ -228,6 +228,33 @@ public class CsvUtils {
 
     }
 
+
+    public static boolean CopyColumn(String CsvFilePath,int IndexSrcColumn,String NewColumnName) throws IOException {
+        CSVReader reader = new CSVReader(new FileReader(CsvFilePath));
+        List<String[]> DataList = reader.readAll();
+        List<String[]> NewDataList = reader.readAll();
+
+        // Add Header first
+        ArrayList Headers = new ArrayList(Arrays.asList(DataList.get(0)));
+        Headers.add(IndexSrcColumn+1,NewColumnName); // Add the new element here
+        NewDataList.add(GetStringArray(Headers));
+
+
+        for (int idx = 1;idx < DataList.size();idx++){
+            String[] Row = DataList.get(idx);
+            ArrayList<String> RowArr = new ArrayList<String>();
+            for(int i =0;i<Row.length;i++){
+                RowArr.add(Row[i]);
+            }
+
+            RowArr.add(IndexSrcColumn+1,RowArr.get(IndexSrcColumn));
+            NewDataList.add(GetStringArray(RowArr));
+
+        }
+        return WriteArrayToCsvFile(CsvFilePath,NewDataList);
+
+    }
+
     public static boolean WriteArrayToCsvFile(String CsvFilePath,List<String[]> DataArray){
        try{
            FileWriter outputfile = new FileWriter(CsvFilePath);

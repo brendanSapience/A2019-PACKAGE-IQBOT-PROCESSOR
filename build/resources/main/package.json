@@ -4,8 +4,8 @@
     "description": "Provides Actions for IQ Bot Output Files.",
     "group": "com.automationanywhere",
     "artifactName": "IQBotExtendedPackage",
-    "packageVersion": "1.0.0-20200108-213435",
-    "codeVersion": "1.0.0-20200108-213435",
+    "packageVersion": "1.0.0-20200109-215044",
+    "codeVersion": "1.0.0-20200109-215044",
     "commands": [
         {
             "name": "Add Column",
@@ -37,6 +37,45 @@
                 {
                     "name": "InsertColumnAfter",
                     "label": "Insert New Column After",
+                    "type": "TEXT"
+                },
+                {
+                    "name": "NewColumnName",
+                    "label": "New Column Name",
+                    "type": "TEXT",
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Copy Column",
+            "label": "Copy Column",
+            "description": "Copy Column and its content",
+            "nodeLabel": "Copy Column",
+            "mainClass": "com.automationanywhere.botcommand.demo.CopyColumnCommand",
+            "icon": "pkg.svg",
+            "returnType": "BOOLEAN",
+            "returnSubtype": "UNDEFINED",
+            "returnLabel": "Assign the output to variable",
+            "returnRequired": true,
+            "attributes": [
+                {
+                    "name": "CsvFilePath",
+                    "label": "CSV Input File Path",
+                    "type": "TEXT",
+                    "rules": [
+                        {
+                            "name": "NOT_EMPTY"
+                        }
+                    ]
+                },
+                {
+                    "name": "ColumnToCopy",
+                    "label": "Column To Copy",
                     "type": "TEXT"
                 },
                 {

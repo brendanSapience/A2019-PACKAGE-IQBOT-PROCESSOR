@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.automationanywhere.botcommand.demo.SetCellContentTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-01-08T21:34:36" hostname="EC2AMAZ-5L6MMDA" time="0.004">
+<testsuite name="com.automationanywhere.botcommand.demo.SetCellContentTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-01-09T21:50:45" hostname="EC2AMAZ-5L6MMDA" time="0.034">
   <properties/>
-  <testcase name="aTests[0](C:\Users\Administrator.EC2AMAZ-5L6MMDA\Desktop\Axos\Hamilton Appraisal Group - 2018 October_1.csv, 3.0, statement, My New Content!, true)" classname="com.automationanywhere.botcommand.demo.SetCellContentTest" time="0.004"/>
+  <testcase name="aTests[0](C:\Users\Administrator.EC2AMAZ-5L6MMDA\Desktop\Axos\Hamilton Appraisal Group - 2018 October_1.csv, 3.0, statement, My New Content!, true)" classname="com.automationanywhere.botcommand.demo.SetCellContentTest" time="0.034"/>
   <system-out><![CDATA[DEBUG:true
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
